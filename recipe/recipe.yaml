@@ -1,0 +1,65 @@
+context:
+  version: ${{ env.get("PKGVER", default="0.0.2") }}
+
+package:
+  name: q-kx-skia
+  version: ${{ version }}
+
+source:
+  path: ..
+  use_gitignore: false
+  filter:
+    include:
+      - src/**
+      - deps/skia/include/**
+      - deps/skia/modules/**
+      - deps/skia/out/Static/libskia.a
+      - deps/skia/out/Static/skia.lib
+      - deps/skia/LICENSE
+      - CMakeLists.txt
+      - q.lib
+      - fonts/**
+    exclude:
+      - recipe/**
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler("cxx") }}
+    - cmake
+    - if: not win
+      then:
+      - make
+  host:
+    - freetype
+  run:
+    - if: linux
+      then:
+      - fontconfig
+      else:
+      - libfreetype
+
+tests:
+  - script:
+    - if: linux and x86_64
+      then:
+        - test -f ${PREFIX}/lib/q/mod/kx/skia.li64.so
+    - if: osx and arm64
+      then:
+        - test -f ${PREFIX}/lib/q/mod/kx/skia.ma64.so
+    - if: win
+      then:
+        - if not exist %PREFIX%\\lib\\q\\mod\\kx\\skia.wi64.dll exit 1
+    - if: unix
+      then:
+        - test -f ${PREFIX}/fonts/ivyfonts/Noto/NotoMono-Regular.ttf
+    - if: win
+      then:
+        - if not exist %PREFIX%\\fonts\\ivyfonts\\Noto\\NotoMono-Regular.ttf exit 1
+
+about:
+  license_file:
+    - fonts/ivyfonts/LICENSE_OFL.txt
+    - deps/skia/LICENSE

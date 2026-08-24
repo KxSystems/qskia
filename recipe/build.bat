@@ -1,0 +1,19 @@
+mkdir %SRC_DIR%\build
+cd %SRC_DIR%\
+
+set BUILD_TYPE=RelWithDebInfo
+
+cmake -G "NMake Makefiles" ^
+      %CMAKE_ARGS% ^
+      -DCMAKE_INSTALL_PREFIX="%PREFIX%" ^
+      -DCMAKE_BUILD_TYPE=%BUILD_TYPE% ^
+      -DCMAKE_CXX_STANDARD=17 ^
+      -DCMAKE_CXX_STANDARD_REQUIRED=ON ^
+       %SRC_DIR%
+if errorlevel 1 exit \b 1
+
+cmake --build . --config %BUILD_TYPE%
+if errorlevel 1 exit \b 1
+
+cmake --build . --config %BUILD_TYPE% --target install
+if errorlevel 1 exit \b 1
