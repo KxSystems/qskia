@@ -8,12 +8,14 @@
 #include "q_skia.h"
 #include "q_skia_core.h"
 
+#include <cstdlib>
+#include <cstring>
+#include <string>
+
 #ifdef _WIN32
 #include <io.h>
-#include <string.h>
 #else
 #include <unistd.h>
-#include <string>
 #endif
 
 #define printList(list, n) {\
