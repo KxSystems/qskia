@@ -69,6 +69,7 @@ target_link_libraries(${MY_LIBRARY_NAME} PRIVATE ${SKIA_LIBRARY})
 
 if(APPLE)
     target_link_options(${MY_LIBRARY_NAME} PRIVATE -undefined dynamic_lookup -Qunused-arguments)
+    target_link_libraries(${MY_LIBRARY_NAME} PRIVATE "-framework CoreFoundation" "-framework CoreText")
 endif()
 
 if(NOT SKIA_DEPS_STATIC)
