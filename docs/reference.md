@@ -318,9 +318,9 @@ Render the image to a RGB byte list.
 |`skia`|foreign|Skia foreign object|
 
 ### Returns
-|Type     |Description|
-|---------|-----------|
-|byte list|byte list of RGB values|
+|Type |Description|
+|-----|-----------|
+|list |4 item list of (width;height;channels;pixels), types: (integer;integer;integer;byte list)|
 
 ### Example
 ```q
