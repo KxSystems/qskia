@@ -6,7 +6,7 @@ namespace: kx.skia
 
 source:
   repo: https://github.com/KxSystems/qskia
-  ref: 1.0.0
+  version: 1.0.0
   path: .
 
 license: Apache-2.0
