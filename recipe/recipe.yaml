@@ -1,5 +1,5 @@
 context:
-  version: ${{ env.get("PKGVER", default="0.0.2") }}
+  version: ${{ env.get("PKG_VERSION", default="0.0.0") }}
 
 package:
   name: q-kx-skia
@@ -16,6 +16,7 @@ source:
       - deps/skia/out/Static/libskia.a
       - deps/skia/out/Static/skia.lib
       - deps/skia/LICENSE
+      - LICENSE
       - CMakeLists.txt
       - q.lib
       - fonts/**
@@ -60,6 +61,16 @@ tests:
         - if not exist %PREFIX%\\fonts\\ivyfonts\\Noto\\NotoMono-Regular.ttf exit 1
 
 about:
+  homepage: https://github.com/KxSystems/qskia
+  repository: https://github.com/KxSystems/qskia
+  documentation: https://github.com/KxSystems/qskia/blob/main/docs/reference.md
+  license: Apache-2.0
   license_file:
+    - LICENSE
     - fonts/ivyfonts/LICENSE_OFL.txt
     - deps/skia/LICENSE
+  summary: A graphics interface module via the Skia library for KDB-X.
+  description: >-
+    KDB-X module that provides a graphics interface via the Skia 2D graphics
+    library. It lets q draw shapes, lines, pixel blocks and text onto an
+    image, and render the result to PNG or raw RGB bytes.
